@@ -81,12 +81,15 @@ print select_keys({'a': 1, 'b': 2, 'c': 3, 'i': 4}, ['a', 'c'])
 
 # 6 _______________________
 
-def toArray(dic):
 
-    return
+def toArray(dic):
+    lists = []
+    for key in dic:
+        lists.append([key, dic[key]])
+    return lists
 
 print toArray({"0": "a", "1": "b", "2": "c"})
-#   [["0", "a"], ["1", "b"], ["2", "c"]]
+
 
 
 
