@@ -1,29 +1,19 @@
 # 1 _______________________
 def text_parc(text):
     result = ""
-    text = "".join(sorted(text))
-    last_letter = ""
+    count = 0
     for letter in text:
-        if letter == last_letter:
+        for i in text:
+            if letter == i:
+                count += 1
+        if count >= 2 and result.find(letter) == -1:
             result += letter
-        last_letter = letter
+        count = 0
     return result
+
 
 print text_parc("agcdcgia")
 
-
-"""def text_parc_lists(text):
-    result = ["", ""]  # 0 - last_letter; 1 - result;
-    for letter in text:
-        result.append(letter)
-    result.sort()
-    for letter in range(2, len(result)):
-        if result[letter] == result[0]:
-            result[1] += result[letter]
-        result[0] = result[letter]
-    return result[1]
-
-print text_parc_lists("agcdcgia")"""
 
 # 2 _______________________
 array = [
@@ -44,8 +34,9 @@ update(8, True)
 # update(7, True)
 print array
 
+
 # 3 _______________________
-extend_letters = "!\"$%&\'*+,-./:;<=>?[\\]^`{|}~ \t\n\x0b\x0c\r"
+extend_letters = "!\"$%&\'*+,-./:;<=?[\\]^`{|}~\t\n\x0b\x0c\r"
 
 
 def normalize(text):
@@ -56,7 +47,9 @@ def normalize(text):
                 break
         if letter != symbol:
             result += letter
-    return result
+    # deletes more then one space
+    result = " ".join(result.split())
+    return result.strip()
 
 
 print normalize("X > %Y")
@@ -65,28 +58,35 @@ print normalize("\"X\" >'Y'> I  \t> 1Z2")
 
 
 # 4 _______________________
-# miss
+def toHash(lsts):
+    dic = {}
+    for lst in lsts:
+        dic[(lst[0])] = lst[1]
+    return dic
+
+
+print toHash([["x", "y"], ["a", "b"], ["i", "j"]])
+
 
 # 5 _______________________
-
 def select_keys(dic, keys):
     result = {}
     for i in range(len(keys)):
         result[keys[i]] = dic[keys[i]]
     return result
 
+
 print select_keys({'a': 1, 'b': 2}, ['b'])
-print select_keys({'a': 1, 'b': 2, 'c': 3, 'i': 4}, ['a', 'c'])
+# print select_keys({'a': 1, 'b': 2, 'c': 3, 'i': 4}, ['a', 'c'])
 
 
 # 6 _______________________
-
-
 def toArray(dic):
     lists = []
     for key in dic:
         lists.append([key, dic[key]])
     return lists
+
 
 print toArray({"0": "a", "1": "b", "2": "c"})
 
